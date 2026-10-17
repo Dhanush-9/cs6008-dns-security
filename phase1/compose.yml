@@ -8,6 +8,11 @@ services:
         networks:
             client-net:
                 ipv4_address: 172.16.1.10
+        entrypoint: 
+            - /lab/scripts/client-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/client-entrypoint.sh:/lab/scripts/client-entrypoint.sh:ro
 
     webserver:
         image: cs6008-phase1-lab
@@ -18,6 +23,12 @@ services:
         networks:
             client-net:
                 ipv4_address: 172.16.1.20
+        entrypoint: 
+            - /lab/scripts/webserver-entrypoint.sh
+        command: ["busybox-extras", "httpd", "-f", "-p", "80", "-h", "/var/www/html"]
+        volumes:
+            - ./scripts/webserver-entrypoint.sh:/lab/scripts/webserver-entrypoint.sh:ro
+            - ./web:/var/www/html:ro
 
     edge-router:
         image: cs6008-phase1-lab
@@ -30,6 +41,11 @@ services:
                 ipv4_address: 172.16.1.2
             resolver-net:
                 ipv4_address: 172.16.2.2
+        entrypoint: 
+            - /lab/scripts/router-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/router-entrypoint.sh:/lab/scripts/router-entrypoint.sh:ro
 
     resolver:
         image: cs6008-phase1-lab
@@ -40,6 +56,11 @@ services:
         networks:
             resolver-net:
                 ipv4_address: 172.16.2.10
+        entrypoint:
+            - /lab/scripts/resolver-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/resolver-entrypoint.sh:/lab/scripts/resolver-entrypoint.sh:ro
 
     core-router:
         image: cs6008-phase1-lab
@@ -52,6 +73,11 @@ services:
                 ipv4_address: 172.16.2.3
             authoritative-net:
                 ipv4_address: 172.16.3.3
+        entrypoint:
+            - /lab/scripts/router-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/router-entrypoint.sh:/lab/scripts/router-entrypoint.sh:ro
             
     root-ns:
         image: cs6008-phase1-lab
@@ -62,6 +88,11 @@ services:
         networks:
             authoritative-net:
                 ipv4_address: 172.16.3.10
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
 
     tld-ns:
         image: cs6008-phase1-lab
@@ -72,6 +103,11 @@ services:
         networks:
             authoritative-net:
                 ipv4_address: 172.16.3.20
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
 
     domain-ns:
         image: cs6008-phase1-lab
@@ -82,6 +118,11 @@ services:
         networks:
             authoritative-net:
                 ipv4_address: 172.16.3.30
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
 
 networks:
     client-net:
