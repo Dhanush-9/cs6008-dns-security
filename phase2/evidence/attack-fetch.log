@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Date: Sun, 18 Oct 2026 18:50:07 GMT
+Connection: close
+Content-type: text/html
+Accept-Ranges: bytes
+Last-Modified: Sun, 18 Oct 2026 18:22:25 GMT
+ETag: "6ad50e61-e7"
+Content-Length: 231
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rogue Example.com</title>
+</head>
+<body>
+  <h1>Rogue Example.com</h1>
+  <p>You have been redirected to the rogue server at 172.16.1.30!</p>
+</body>
+</html>
+

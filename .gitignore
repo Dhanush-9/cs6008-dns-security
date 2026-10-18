@@ -1,2 +1,6 @@
 teachings/
 references.txt
+interceptor
+*.o
+phase2/attacker/interceptor
+phase2/attacker/interceptor.log

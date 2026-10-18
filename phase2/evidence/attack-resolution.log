@@ -1,0 +1,21 @@
+
+; <<>> DiG 9.20.29 <<>> example.com.
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4377
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5bb99a8e0446fc2d010000006ad514df5e0be6314d68780d (good)
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		588	IN	A	172.16.1.30
+
+;; Query time: 0 msec
+;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
+;; WHEN: Sun Oct 18 18:50:07 UTC 2026
+;; MSG SIZE  rcvd: 84
+
