@@ -13,6 +13,7 @@ services:
         command: ["tail", "-f", "/dev/null"]
         volumes:
             - ./scripts/client-entrypoint.sh:/lab/scripts/client-entrypoint.sh:ro
+            - ./client/resolv.conf:/etc/resolv.conf:ro
 
     webserver:
         image: cs6008-phase1-lab
@@ -58,9 +59,10 @@ services:
                 ipv4_address: 172.16.2.10
         entrypoint:
             - /lab/scripts/resolver-entrypoint.sh
-        command: ["tail", "-f", "/dev/null"]
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
         volumes:
             - ./scripts/resolver-entrypoint.sh:/lab/scripts/resolver-entrypoint.sh:ro
+            - ./bind/resolver:/etc/bind:ro
 
     core-router:
         image: cs6008-phase1-lab
@@ -90,9 +92,10 @@ services:
                 ipv4_address: 172.16.3.10
         entrypoint:
             - /lab/scripts/authoritative-entrypoint.sh
-        command: ["tail", "-f", "/dev/null"]
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
         volumes:
             - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/root:/etc/bind:ro
 
     tld-ns:
         image: cs6008-phase1-lab
@@ -105,9 +108,10 @@ services:
                 ipv4_address: 172.16.3.20
         entrypoint:
             - /lab/scripts/authoritative-entrypoint.sh
-        command: ["tail", "-f", "/dev/null"]
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
         volumes:
             - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/tld:/etc/bind:ro
 
     domain-ns:
         image: cs6008-phase1-lab
@@ -120,9 +124,10 @@ services:
                 ipv4_address: 172.16.3.30
         entrypoint:
             - /lab/scripts/authoritative-entrypoint.sh
-        command: ["tail", "-f", "/dev/null"]
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
         volumes:
             - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/domain:/etc/bind:ro
 
 networks:
     client-net:
