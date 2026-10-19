@@ -91,7 +91,15 @@ docker compose -f phase2/compose.yml exec -T core-router /lab/scripts/divert-on.
    **Expected Result**:
    - `www.example.com` still resolves to `172.16.1.20`.
 
-5. View the attacker interceptor logs:
+5. Dump the resolver cache to prove the poisoned record is cached:
+   ```bash
+   docker compose -f phase2/compose.yml exec -T resolver rndc dumpdb -cache
+   docker compose -f phase2/compose.yml exec -T resolver grep -A 4 "example.com" /var/cache/bind/named_dump.db
+   ```
+   **Expected Result**:
+   Shows `example.com. 599 A 172.16.1.30` cached in view `_default`.
+
+6. View the attacker interceptor logs:
    ```bash
    docker compose -f phase2/compose.yml exec -T attacker cat /lab/attacker/interceptor.log
    ```

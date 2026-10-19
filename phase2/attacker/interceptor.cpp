@@ -19,9 +19,15 @@
 #include <fstream>
 #include <sstream>
 
-// DNS Header structure
+// // DNS Header structure
+// id: 16-bit Transaction ID (TXID). The response must match the query's TXID.
+// flags: Contains the Query/Response bit (QR), Opcode, Authoritative Answer bit (AA), Truncation (TC), Recursion Desired (RD), Recursion Available (RA), and Response Code (RCODE).
+// qdcount: Number of queries in the Question section (normally 1).
+// ancount: Number of Resource Records in the Answer section.
+// nscount: Number of Name Server Resource Records in Authority section.
+// arcount: Number of Resource Records in Additional section.
 struct dnshdr {
-    uint16_t id;
+    uint16_t id;  // Transaction ID (TXID)
     uint16_t flags;
     uint16_t qdcount;
     uint16_t ancount;
@@ -58,6 +64,7 @@ uint16_t compute_checksum(const uint16_t *buf, int nwords) {
 }
 
 // UDP pseudo-header for checksum calculation
+// Under RFC 768, UDP checksums are calculated not just over the UDP header and payload, but also over a pseudo-header containing the IP source, IP destination, protocol number (17 for UDP), and UDP length.
 struct PseudoHeader {
     uint32_t src_ip;
     uint32_t dst_ip;

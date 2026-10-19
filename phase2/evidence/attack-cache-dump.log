@@ -1,0 +1,29 @@
+; Cache dump collected after forge attack — shows resolver poisoned with rogue A record
+; Collected via: rndc dumpdb -cache && cat /var/cache/bind/named_dump.db
+;
+; Start view _default
+;
+;
+; Cache dump of view '_default' (cache _default)
+;
+; using a 0 second stale ttl
+$DATE 20261019150257
+; authanswer
+.			565	IN NS	root-ns.
+; glue
+com.			565	NS	tld-ns.com.
+; authauthority
+example.com.		565	NS	domain-ns.example.com.
+; answer
+			273	\-AAAA	;-$NXRRSET
+; example.com. SOA domain-ns.example.com. admin.example.com. 1 3600 900 604800 300
+; authanswer
+			565	A	172.16.1.30    ← FORGED ROGUE ADDRESS
+; glue
+domain-ns.example.com.	565	A	172.16.3.30
+; authanswer
+www.example.com.	573	A	172.16.1.20    ← Unmodified (relay pass-through)
+; glue
+tld-ns.com.		265	\-AAAA	;-$NXRRSET
+;
+; Dump complete

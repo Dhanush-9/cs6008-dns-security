@@ -1,21 +1,19 @@
-
-; <<>> DiG 9.20.29 <<>> www.example.com.
+; <<>> DiG 9.20.29 <<>> +time=10 +tries=3 www.example.com.
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61887
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16970
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 1232
-; COOKIE: b009f3d188cdc6c4010000006ad514df3676447b0f0eed51 (good)
+; COOKIE: 6051db992ac130e2010000006ad6310648b6c5411bf6905c (good)
 ;; QUESTION SECTION:
 ;www.example.com.		IN	A
 
 ;; ANSWER SECTION:
-www.example.com.	589	IN	A	172.16.1.20
+www.example.com.	600	IN	A	172.16.1.20
 
-;; Query time: 0 msec
+;; Query time: 1 msec
 ;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
-;; WHEN: Sun Oct 18 18:50:07 UTC 2026
+;; WHEN: Mon Oct 19 15:02:30 UTC 2026
 ;; MSG SIZE  rcvd: 88
-

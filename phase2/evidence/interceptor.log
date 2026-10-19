@@ -1,10 +1,11 @@
+make: Nothing to be done for 'all'.
+Found resolver MAC: 3e:6c:75:3f:0d:ca
 === DNS Interceptor (Phase 2) ===
 Mode: FORGE ATTACK
 Target Domain: example.com
 Rogue IP: 172.16.1.30
 Listening Interface: eth0
-Attacker MAC: 6a:cf:f2:0e:8d:e9
-Resolver MAC: be:6e:a9:49:58:de
+Attacker MAC: 36:b4:c7:45:e6:e9
+Resolver MAC: 3e:6c:75:3f:0d:ca
 [+] Interceptor ready and listening on eth0...
-[*] Intercepted target response for: example.com (type A) from 172.16.3.30 (ANCOUNT=1)
-[+] FORGED response injected: example.com -> 172.16.1.30 (TXID: 0x8216, UDP port: 55058)
+Interceptor running in FORGE ATTACK mode.

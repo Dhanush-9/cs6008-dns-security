@@ -1,0 +1,135 @@
+================================================================
+ANNOTATED PACKET CAPTURE — Phase 2 On-Path DNS Response Forgery
+================================================================
+Capture file  : attack.pcap
+Captured on   : attacker eth0 (172.16.2.100), link-type EN10MB
+Tool          : tcpdump -i eth0 -w /tmp/attack.pcap udp port 53
+Attack mode   : --forge (interceptor replaces genuine A record)
+Target domain : example.com (should resolve to 172.16.1.20)
+Rogue IP      : 172.16.1.30
+
+================================================================
+NETWORK TOPOLOGY (relevant nodes)
+================================================================
+
+  [client 172.16.1.100]
+        |
+  [resolver 172.16.2.10]  ← DNS cache, our victim
+        |
+  [core-router 172.16.2.3]  ← has divert route: 172.16.2.10 → via attacker
+        |
+  [attacker 172.16.2.100]  ← running interceptor in --forge mode
+        |
+  [auth servers 172.16.3.x]  ← domain-ns 172.16.3.30 is the target source
+
+================================================================
+SEQUENCE OF EVENTS (with timestamps from pcap)
+================================================================
+
+STEP 1 — Resolver iterative resolution begins
+----------------------------------------------
+15:02:22.257996  172.16.3.10.53 → 172.16.2.10.47869
+  TXID=28234  ". NS root-ns."  (Root referral to resolver)
+  → attacker sees root-ns referral packet; qtype=NS, src=root-ns
+  → NOT a target packet (not from domain-ns, not A record for example.com)
+  → RELAYED unchanged
+
+15:02:22.257996  172.16.3.10.53 → 172.16.2.10.60825
+  TXID=5506   com. NS referral (TLD referral)
+  → RELAYED unchanged (from root-ns, not domain-ns)
+
+15:02:22.258396  172.16.3.10.53 → 172.16.2.10.46058
+  TXID=6741   com. NS referral (another TLD referral copy)
+  → RELAYED unchanged
+
+15:02:22.258436  172.16.3.10.53 → 172.16.2.10.45808
+  TXID=12791  ". NS root-ns." (root referral)
+  → RELAYED unchanged
+
+STEP 2 — TLD responds with example.com NS referral
+----------------------------------------------------
+15:02:22.258700  172.16.3.20.53 → 172.16.2.10.44309
+  TXID=7695   example.com. NS referral (from tld-ns)
+  → src=172.16.3.20 (tld-ns), not domain-ns → RELAYED unchanged
+
+15:02:22.259352  172.16.3.20.53 → 172.16.2.10.42895
+  TXID=17830  www/example.com NS referral
+  → RELAYED unchanged
+
+STEP 3 — GENUINE answer arrives from domain-ns (THE TARGET PACKET)
+-------------------------------------------------------------------
+15:02:22.259390  172.16.3.30.53 → 172.16.2.10.36064
+  TXID=49897  example.com. A 172.16.1.20  [GENUINE ANSWER]
+  ip_id=41018, length=152
+  ANCOUNT=1, ANSWER: example.com. A 172.16.1.20
+
+  *** INTERCEPTOR ACTS HERE ***
+  - src IP  = 172.16.3.30 (domain-ns) ✓
+  - qname   = example.com             ✓
+  - qtype   = A (1)                   ✓
+  - ancount = 1 (has answer)          ✓
+  → All bailiwick checks pass → FORGE triggered
+
+STEP 4 — FORGED answer injected (replaces genuine)
+---------------------------------------------------
+15:02:22.260155  172.16.3.30.53 → 172.16.2.10.36064
+  TXID=49897  example.com. A 172.16.1.30  [FORGED ANSWER]
+  ip_id=41018, length=73  ← smaller (stripped extra RRs, injected only A record)
+  TTL=64 (attacker-set, vs genuine TTL=63)
+  ANSWER: example.com. A 172.16.1.30
+
+  Key observations:
+  • Same TXID as genuine packet (49897) — resolver accepts it
+  • Forged packet injected BEFORE genuine arrives at resolver
+    (genuine also arrives but resolver takes the first valid response)
+  • src IP spoofed to 172.16.3.30, src port=53, dst port=36064
+    (resolver's source port from original query)
+  • Genuine packet (also arriving at resolver) is IGNORED as duplicate
+
+STEP 5 — www.example.com resolves normally (unaffected)
+-------------------------------------------------------
+15:02:30.386792  172.16.3.30.53 → 172.16.2.10.50947
+  TXID=28657  NS referral (not A record, ancount=0) → RELAYED
+
+15:02:30.496790  172.16.3.30.53 → 172.16.2.10.53431
+  TXID=63703  www.example.com. A 172.16.1.20  [GENUINE, RELAYED UNCHANGED]
+  → qname = www.example.com ≠ example.com → relay passes through
+
+================================================================
+RESULT SUMMARY
+================================================================
+
+example.com:
+  Genuine answer : 172.16.1.20  (from domain-ns, intercepted & DROPPED)
+  Forged answer  : 172.16.1.30  (injected by attacker, ACCEPTED by resolver)
+  Cached by resolver: 172.16.1.30  (confirmed via rndc dumpdb)
+  Client fetch   : "Rogue Example.com" page (from 172.16.1.30)
+
+www.example.com:
+  Genuine answer : 172.16.1.20  (relayed unchanged)
+  Client receives: 172.16.1.20  (correct, unaffected)
+
+================================================================
+WHY THE ATTACK SUCCEEDS
+================================================================
+
+1. Plain DNS has no authentication:
+   - DNS responses carry no cryptographic signature
+   - A resolver accepts the first response matching TXID + src-port + qname
+   - The forged packet has identical TXID and correct src IP/port (spoofed)
+
+2. On-path advantage:
+   - Attacker sits between auth servers and resolver (via core-router divert)
+   - Sees genuine packets BEFORE resolver
+   - Can inject forged response with sub-millisecond advantage
+   - Race condition is always won because genuine packet is also relayed
+     but arrives as a duplicate (resolver ignores second response)
+
+3. Bailiwick constraint satisfied:
+   - Attacker only forges A records for example.com from domain-ns (172.16.3.30)
+   - NS referrals and www.example.com pass through unchanged
+   - This prevents breaking the iterative resolution chain
+
+================================================================
+END OF ANNOTATION
+================================================================
