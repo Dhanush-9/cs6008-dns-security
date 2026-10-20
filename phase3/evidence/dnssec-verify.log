@@ -1,0 +1,22 @@
+
+; <<>> DiG 9.20.29 <<>> +dnssec example.com.
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26596
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: c0eb759bbb204055010000006ad65dd21ada08dbe29501b8 (good)
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		600	IN	A	172.16.1.20
+example.com.		600	IN	RRSIG	A 8 2 600 20261118170826 20261019170826 20739 example.com. jwVWJ3a6jOjKBJkLRNAl6/fGDQ3NjrZ2+ptX3pD8JobRKtVt7MV+FF2Q MmpQztDBCoIzWwVO6htG0UIZnuiXXi82Ep+2yorqi4OAyLa3veLBfzB1 DlsZ/ET4yH14DAShLhbE1KggO74CSFnGSJr+dudC4JbbCUj7azkLvpeu Zqg=
+
+;; Query time: 1 msec
+;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
+;; WHEN: Mon Oct 19 18:13:38 UTC 2026
+;; MSG SIZE  rcvd: 255
+

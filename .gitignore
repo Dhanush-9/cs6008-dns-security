@@ -4,3 +4,5 @@ interceptor
 *.o
 phase2/attacker/interceptor
 phase2/attacker/interceptor.log
+phase3/attacker/interceptor
+phase3/attacker/interceptor.log

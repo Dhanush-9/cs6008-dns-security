@@ -1,0 +1,110 @@
+; File written on Mon Oct 19 18:08:26 2026
+; dnssec-signzone version 9.20.29
+example.com.		600	IN SOA	domain-ns.example.com. admin.example.com. (
+					1          ; serial
+					3600       ; refresh (1 hour)
+					900        ; retry (15 minutes)
+					604800     ; expire (1 week)
+					300        ; minimum (5 minutes)
+					)
+			600	RRSIG	SOA 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					aHf/nYWwmLye9LKENqA87trqH4C+RLa7Jaq1
+					o2i6UwCBfcUlR/YO/QT1v9cDlHGWXiYI7ABl
+					1VAgr+IIqLHGBc3jtG2dtLPuTZDEcXfwmUdU
+					IOMNQrv+8av3pf1aWjC3uGd1XaPl8V9XONH2
+					CLViaP0Z+I5mbomkZ5ohxC9I91w= )
+			600	NS	domain-ns.example.com.
+			600	RRSIG	NS 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					H5ONsn0dBkEOrtAfZUoYLq/JDmY8bIdJijQ3
+					DqnHmY5+GMP6SMm0/tF28SrUx2f2IjTXnjty
+					3p5U9uKFrTlACgRthpeNOAE5VIx9jRDrg3S6
+					nK4zuYRRG4X0ty24QUn8eOwTUt+D0/GydiZR
+					BLaTZF6aX4DoAbuJcp+h1XxgNxE= )
+			600	A	172.16.1.20
+			600	RRSIG	A 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					jwVWJ3a6jOjKBJkLRNAl6/fGDQ3NjrZ2+ptX
+					3pD8JobRKtVt7MV+FF2QMmpQztDBCoIzWwVO
+					6htG0UIZnuiXXi82Ep+2yorqi4OAyLa3veLB
+					fzB1DlsZ/ET4yH14DAShLhbE1KggO74CSFnG
+					SJr+dudC4JbbCUj7azkLvpeuZqg= )
+			300	NSEC	domain-ns.example.com. A NS SOA RRSIG NSEC DNSKEY
+			300	RRSIG	NSEC 8 2 300 (
+					20261118170826 20261019170826 20739 example.com.
+					MpFmIF4YgipunBh21795QZQVwwUuunmlYEcx
+					+tz8AUMKuatu5ffn6ohE70xunk8EYCTAEHCg
+					iqldvy+V1AQ/P9JNKmzwlm9M/EHcerHm1ZMy
+					x17Gyf+EwWUBh9WThTN1fiZtE3XJfyRYp9Sq
+					PT76Z+e+9HlrCw6p5hzWUmFoNtA= )
+			600	DNSKEY	256 3 8 (
+					AwEAAa7nc+mHA5e+qbWJRduB9bHbXiGGINan
+					WWtKkhQIuaGBf8E/TWRQhJboVOTqYGK/VrXB
+					K3mT9Bi24xUndHMfL4h01hHUckjUL3oSog3r
+					54V04UK4t6pryee2nwtkL186V2fThd/dfY8n
+					J44kBxL06sHPRBowUGG31M5yWh5+LfbN
+					) ; ZSK; alg = RSASHA256 ; key id = 20739
+			600	DNSKEY	257 3 8 (
+					AwEAAYvsy2LVAjafUyHSAcGBBcVqYUP5JH23
+					QLdMv/519mGlMza/xlJ0VdrSjMApPayXT1O/
+					p/8StDqIz8X1LAGP70QB/EoDBk1cP4R0eCYC
+					FQLxvHNSJwt80BxAYx7NK4AG9sPo3xufdph3
+					TiuQDUEXqmRO2YTfVLH6+KXOPwmJ2cXIAVxe
+					Ym1mqKa2up9j6TVvPaZBMuZ8HbGZhqRE7r3l
+					j34oiEU3zh9X7xa76MSgvopAfpb/RIUk7jGg
+					9b68YEZqUbp/UNzKNK9S6RScfkDut+rNzwX1
+					ZocnKud5kbhAuEZm4sqYEyExCfcGcHseglUq
+					zK0ENTHR4xqMv/dMjlqK8lE=
+					) ; KSK; alg = RSASHA256 ; key id = 55685
+			600	RRSIG	DNSKEY 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					YsYejwmsojaYt0Z9oDJBHMyfLSHyCnBaebbm
+					SHMseKWU1xrY9rSJA3FFy6i6ilEdn2/qSoGK
+					UQH0D3y/+eB3dS5VeOuA/1Mjbtqas96czmNP
+					6XVSpjkBguLQMuCedYSaf5v8WSLPGBSvuxHZ
+					xSo/xlQ/wlJm82jh+GoPoXgsIaQ= )
+			600	RRSIG	DNSKEY 8 2 600 (
+					20261118170826 20261019170826 55685 example.com.
+					bTrplHCf3Z6w/LICP1rczwdwNxjFQmwHCADw
+					EzgL10XCQDAebOeVFcdiAiBx3iBb0n4ioZ/d
+					oiP4b5jiOLkkPNOyWlaWznFDDylT3mPmDZyE
+					dQl2yQWthSfYl5yMrmxI5m+QiTUtD+RTQiE2
+					XcuzLBB0O6l2Chrj+GdEaCnCcKeFBTSL/gxI
+					vrYw59mZprCpM9M7+O5j6C2qnwYWYvrUqwUm
+					prWTLnhOe+9lGWXnsE/C/nCa2n6Pr4t8dzbt
+					ETtuN/JyO5+KPFSx/B+nThH+NociDr/6ztoi
+					ql6QqC/Waqel1INCN0k7fAOn2+qglv186S5Z
+					uNt3XosoqS6doTj3rQ== )
+domain-ns.example.com.	600	IN A	172.16.3.30
+			600	RRSIG	A 8 3 600 (
+					20261118170826 20261019170826 20739 example.com.
+					bwduOohMMjR/cQ+fjwMKkmHtlOTnhhgyKVaA
+					mnLwy1VkPQtYANsrcnuxdThftJsX+kFwmhhM
+					MwlWRVWDKZhokoQswEX1zmwgyN5/1o3UWawk
+					akZl3AA8Ct7ee2pL3GJTNoij/ZAbs480hKyz
+					QEoez+S6UoV2dLWb3b7kEy3ZWR0= )
+			300	NSEC	www.example.com. A RRSIG NSEC
+			300	RRSIG	NSEC 8 3 300 (
+					20261118170826 20261019170826 20739 example.com.
+					AlSIrzFQJ/rDft1QO14DJaSumvgElArKTB9A
+					eOuN2/o2gHCcaM8fM7rj3OD8B40Y6o5236pY
+					LZc9OtOg1K3PYMg+ZMyYQalNkRbvG5Mfk5MW
+					OppoHOer2Q3Yb7HTlizNlTTpKPI8N/Shztg2
+					dgiFOsVfSHEZclrsRshXR9gt9SE= )
+www.example.com.	600	IN A	172.16.1.20
+			600	RRSIG	A 8 3 600 (
+					20261118170826 20261019170826 20739 example.com.
+					HKQ9eqjRVdSBQEsLMC5tQOJjwXOVQhNMMWbA
+					raJ03JNKyVhqgfijZzOoSCoqE/DE64D5Sm8e
+					tx6gUG11O+WBAwacNSwLXz1QJXw8Qs3MxXfW
+					XdwoC9M7Ob2UiW9/g6vE7UGyaWV3AWbRdxNv
+					8R0zRoWkPQ9FE3CMfhnYs6GWe9s= )
+			300	NSEC	example.com. A RRSIG NSEC
+			300	RRSIG	NSEC 8 3 300 (
+					20261118170826 20261019170826 20739 example.com.
+					Xw1Biu12HVcX2tQTSKxEuhU3yYh286PnQaM3
+					ZkyOh1qsN82CdvBAn75+Ci2HCZTa9c4cqt8T
+					c09z4kEZMMj5jlgZvJZ5K2wroEkjdfTxkZGE
+					rxNaE396sc1PQNPNaihQcaVo4Lbss+rEjqCE
+					T2yc72+HYAH0rdD8nstq3AiNYG8= )

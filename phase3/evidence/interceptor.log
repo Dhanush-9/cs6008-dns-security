@@ -1,0 +1,11 @@
+make: Nothing to be done for 'all'.
+Found resolver MAC: 1e:29:6b:15:c8:82
+=== DNS Interceptor (Phase 2) ===
+Mode: FORGE ATTACK
+Target Domain: example.com
+Rogue IP: 172.16.1.30
+Listening Interface: eth0
+Attacker MAC: 6a:ad:21:40:55:46
+Resolver MAC: 1e:29:6b:15:c8:82
+[+] Interceptor ready and listening on eth0...
+Interceptor running in FORGE ATTACK mode.

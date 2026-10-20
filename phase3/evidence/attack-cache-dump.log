@@ -1,0 +1,279 @@
+;
+; Start view _default
+;
+;
+; Cache dump of view '_default' (cache _default)
+;
+; using a 0 second stale ttl
+$DATE 20261019181339
+; secure
+.			599	IN NS	root-ns.
+; secure
+			599	RRSIG	NS 8 0 600 (
+					20261118170826 20261019170826 61915 .
+					Xw97DkmfuylpBxvOhR+Wk55IG/owxBF/b3N/
+					B18hsNK7m1d+kC+oHh9+fGlsRSNM01+ZFoEp
+					5NfqVzWY7pqSlKiIRajqTMKhEuDyF7I5alis
+					gIU8P2zlzovbDcei7+ise7KWeg0hp9aTgK17
+					sYKOnEBfDIInb9bFupGjCSvD0Ns= )
+; secure
+			599	DNSKEY	256 3 8 (
+					AwEAAenends01T4nSi95lP3SHI8kBZ71RTKD
+					Ga0l5Tt9D1U+bMg96PSgTnL3JFBoexPIfwZu
+					VvcT8RG96hbZghjod+qOoCSI2Y/7QOFJer9Z
+					YmxnqxNm3jpFjLbwhkF4DSpqxO/jJUfFz1Bn
+					ObRubxRUILhJELWCWHDpB0S/B1i/aFDV
+					) ; ZSK; alg = RSASHA256 ; key id = 61915
+			599	DNSKEY	257 3 8 (
+					AwEAAbq3u5/S14o/yuf/0f1AXgh3o5DdyfOm
+					8URh4WxhO0J4lDc6YjGRi2z6dXU8nVZbArjZ
+					VHO2VyHcBNnkXasXK1Oq4FeSLtODe/eHSaLx
+					DtqK/41inJw31C8qKSt45covMKZiUsj9Uxax
+					Flj7dcCK0Pz6g+ZUygRiobVSpi2iCed/SrrN
+					R4CRW4xJD5zzv0udLBOXUgUrRbzKsFWkKwvY
+					cSRaTGjHwWSzM1ma0r7fwqvSSX4TMYtu+UAG
+					Rgk6TuSnv8GWh6ghidI+R3ZP4jdQVhgbFcF4
+					OXxVv0xDc7F9WMD9O1YaqK6p6Yc19VLRYLDf
+					/X9xK5y3AroxcY9W9vZadX8=
+					) ; KSK; alg = RSASHA256 ; key id = 32500
+; secure
+			599	RRSIG	DNSKEY 8 0 600 (
+					20261118170826 20261019170826 32500 .
+					jCFZk7pKKRsFVCW4aE/7nh3jvEI/qHx6u1fJ
+					bnxiApA9kAa2vKOoFXLIBFmcHAwGKxMzFTgv
+					COOXEzyS2NdnsLhBJdeHse1ZSt9v0LIGEBHm
+					NkTSwFIjuWHZYKDBlKY4wsmF+tRKqfOH3C1l
+					mqDDKR366nBB0+oXwFipCP90/LvjXIu4popv
+					dlUjOlzLFTzYJ+BQ/p738+V3oCg1MIgu5SyI
+					TDzxVzq3KsrcAwJB4g3TQ+4fsULXyaQZlkZ5
+					o1bxxoMUVu9LOGotcXnkw54IsrN1XwGC0ICR
+					ftoIMIuRcQUwWinZeszqqU1ZAyumwPY83HXB
+					BfAARum5ApHD5un59g== )
+			599	RRSIG	DNSKEY 8 0 600 (
+					20261118170826 20261019170826 61915 .
+					W6jaMQRFtEhpEc0JCiwLztyis7ZuOGc3ubh3
+					6RU1i1M/hjyAsAXYqVKwEzSH3YvoIPK/+8WB
+					st3IM4EBcOpqscObv3JDlSyX6FaeTkBzfYBT
+					T/O+5OIwLkWDjxzrRFQrqbjdJugbf6ncCxP6
+					E7G54N/wQP79HdqaXIUgDcUaQ44= )
+; glue
+com.			599	NS	tld-ns.com.
+; secure
+			599	DS	16904 8 2 (
+					07EA994284518B9D012F81A56A4D6C3C8D2F
+					626AD7B2B83565BCE1A6BAAE9F32 )
+; secure
+			599	RRSIG	DS 8 1 600 (
+					20261118170826 20261019170826 61915 .
+					mIhfVjowSFrtxTqBO7nQFfA47bvOS5q7i/1j
+					bzB0ms18IQe3KknB6c/EzEH5msCb1225Et1g
+					+rIc+c+s3u1npfpu4XqJpOamOmCge+9EKuTL
+					JpdAaqfdXgfLihfwuZ7/a4im1CDu5+S6QHfJ
+					VjJtvInU0U8GW/GXPMUcSSWnliA= )
+; secure
+			599	DNSKEY	256 3 8 (
+					AwEAAex9efs3r9j9sQVuPkAylKVjWAz0EFuQ
+					VfrrPFEaf5Ih8dqbQifc3UUCwaL16M7jusvw
+					AOLZAnsCKH5SPiTXeAMcPD3mzA0djwjpUzFK
+					YaXgbWaukx09WN3AZOn/FZC5jEuRhJe+EMBs
+					mJ73F4OsrxcHs7tPK/xbiRFbcfjofFHP
+					) ; ZSK; alg = RSASHA256 ; key id = 22801
+			599	DNSKEY	257 3 8 (
+					AwEAAdXkqnpjxofojRpMREaOfLXIuzh8t3zj
+					XaIxOYMJ/arXZsFY2MInHwEhsmeHtFGtRlZS
+					aA5RXAwB18yUGAoQK0VQiTF5Vhk2fjGM2Yvo
+					cEaExQjgNmnaezjCVT/Gr8j2HIFFXtGQDn3C
+					udXbELpVgj9m1l7g1zoa22sAvW8YHhJikz7R
+					9ZGqPGRn3bBLd9tmV6YkdaQiGsju7wTeOIuY
+					Zv+6wKrhRC7uODfyayvBUKC0YiioFAgkwSFz
+					H3uI1mIccwDacYepiqAJ+QiahZ68+V+X+BSo
+					ZJ4BuneypEd9EaCYAcUeOSRBc6r8GSvHFXJ6
+					oJ+CgO7rGFL4EB8PiyeC68c=
+					) ; KSK; alg = RSASHA256 ; key id = 16904
+; secure
+			599	RRSIG	DNSKEY 8 1 600 (
+					20261118170826 20261019170826 16904 com.
+					rsjFgja4fO5sXcjblmxXc8v8kp9ns8fOU43l
+					ssmnV+mkwbMpepvfCu9Wi6D/rsSDDbNN9Jlx
+					mBxOya9pdbWGHFIfXX5GPWpbGermxE2uukbh
+					t1I8MraaYcCIW/Y23FkI1nEofjSotznzSWyn
+					YSAmOdf1YR5zMnOVgxd27tJ187ARk1vfFf6s
+					p5nDYELOWFmxqhSj8k2zxNnJ3/bJhs5J+fj0
+					Jtiy3+viSMhJJd3Jheyr7JhCKTC4+fHFJAe6
+					Y0PRv/V/M7iaJu1S5Wbj+eMbR4yx4/Ooz9nB
+					iSBtDs2gxIC3kquEVRchqPA+G1dG+YpKreRR
+					n9+imOG6Hr0OVGexhQ== )
+			599	RRSIG	DNSKEY 8 1 600 (
+					20261118170826 20261019170826 22801 com.
+					A63HJHOdFgWYGbXtx2ni5jORKjHxezZmTj6b
+					Vkzwko8nJqcAx1vGIc6JG+VsDug1HJaBxIUo
+					n5274X2ShRHqt/UtIDr56F+oO9KKUe6l2MJ1
+					z7IPWtdRZYB2cVJz3bHiU+6m8D7iwPoyQNNZ
+					7B31WtBAAe1WcJfM9nGP7U+7bK0= )
+; secure
+example.com.		299	SOA	domain-ns.example.com. admin.example.com. (
+					1          ; serial
+					3600       ; refresh (1 hour)
+					900        ; retry (15 minutes)
+					604800     ; expire (1 week)
+					300        ; minimum (5 minutes)
+					)
+; secure
+			299	RRSIG	SOA 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					aHf/nYWwmLye9LKENqA87trqH4C+RLa7Jaq1
+					o2i6UwCBfcUlR/YO/QT1v9cDlHGWXiYI7ABl
+					1VAgr+IIqLHGBc3jtG2dtLPuTZDEcXfwmUdU
+					IOMNQrv+8av3pf1aWjC3uGd1XaPl8V9XONH2
+					CLViaP0Z+I5mbomkZ5ohxC9I91w= )
+; glue
+			599	NS	domain-ns.example.com.
+; pending-answer
+			599	RRSIG	NS 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					H5ONsn0dBkEOrtAfZUoYLq/JDmY8bIdJijQ3
+					DqnHmY5+GMP6SMm0/tF28SrUx2f2IjTXnjty
+					3p5U9uKFrTlACgRthpeNOAE5VIx9jRDrg3S6
+					nK4zuYRRG4X0ty24QUn8eOwTUt+D0/GydiZR
+					BLaTZF6aX4DoAbuJcp+h1XxgNxE= )
+; secure
+			299	\-AAAA	;-$NXRRSET
+; example.com. SOA domain-ns.example.com. admin.example.com. 1 3600 900 604800 300
+; example.com. RRSIG SOA ...
+; example.com. RRSIG NSEC ...
+; example.com. NSEC domain-ns.example.com. A NS SOA RRSIG NSEC DNSKEY
+; secure
+			599	DS	55685 8 2 (
+					FAD76A23A98AD67941186C69E965A1BD5383
+					F6837FF41B08E5A5DB008D1DF469 )
+; secure
+			599	RRSIG	DS 8 2 600 (
+					20261118170826 20261019170826 22801 com.
+					LXKnCa+obh9Es1yuYP+qoD5HoZJWKyy5Gj5D
+					qEzQzFtX8JaFYm1C8ULP29KsjOJA0n8mTi7v
+					+huXQalvUMm8snfbTsI/fFeqf8Ksyt4j8Bmq
+					hkUNv0bRfwwbquykWeppaK3r27kFCL64g3qQ
+					0M+Mdleo+byLYgWThDPYugmedxU= )
+; secure
+			299	NSEC	domain-ns.example.com. A NS SOA RRSIG NSEC DNSKEY
+; secure
+			299	RRSIG	NSEC 8 2 300 (
+					20261118170826 20261019170826 20739 example.com.
+					MpFmIF4YgipunBh21795QZQVwwUuunmlYEcx
+					+tz8AUMKuatu5ffn6ohE70xunk8EYCTAEHCg
+					iqldvy+V1AQ/P9JNKmzwlm9M/EHcerHm1ZMy
+					x17Gyf+EwWUBh9WThTN1fiZtE3XJfyRYp9Sq
+					PT76Z+e+9HlrCw6p5hzWUmFoNtA= )
+; secure
+			599	DNSKEY	256 3 8 (
+					AwEAAa7nc+mHA5e+qbWJRduB9bHbXiGGINan
+					WWtKkhQIuaGBf8E/TWRQhJboVOTqYGK/VrXB
+					K3mT9Bi24xUndHMfL4h01hHUckjUL3oSog3r
+					54V04UK4t6pryee2nwtkL186V2fThd/dfY8n
+					J44kBxL06sHPRBowUGG31M5yWh5+LfbN
+					) ; ZSK; alg = RSASHA256 ; key id = 20739
+			599	DNSKEY	257 3 8 (
+					AwEAAYvsy2LVAjafUyHSAcGBBcVqYUP5JH23
+					QLdMv/519mGlMza/xlJ0VdrSjMApPayXT1O/
+					p/8StDqIz8X1LAGP70QB/EoDBk1cP4R0eCYC
+					FQLxvHNSJwt80BxAYx7NK4AG9sPo3xufdph3
+					TiuQDUEXqmRO2YTfVLH6+KXOPwmJ2cXIAVxe
+					Ym1mqKa2up9j6TVvPaZBMuZ8HbGZhqRE7r3l
+					j34oiEU3zh9X7xa76MSgvopAfpb/RIUk7jGg
+					9b68YEZqUbp/UNzKNK9S6RScfkDut+rNzwX1
+					ZocnKud5kbhAuEZm4sqYEyExCfcGcHseglUq
+					zK0ENTHR4xqMv/dMjlqK8lE=
+					) ; KSK; alg = RSASHA256 ; key id = 55685
+; secure
+			599	RRSIG	DNSKEY 8 2 600 (
+					20261118170826 20261019170826 20739 example.com.
+					YsYejwmsojaYt0Z9oDJBHMyfLSHyCnBaebbm
+					SHMseKWU1xrY9rSJA3FFy6i6ilEdn2/qSoGK
+					UQH0D3y/+eB3dS5VeOuA/1Mjbtqas96czmNP
+					6XVSpjkBguLQMuCedYSaf5v8WSLPGBSvuxHZ
+					xSo/xlQ/wlJm82jh+GoPoXgsIaQ= )
+			599	RRSIG	DNSKEY 8 2 600 (
+					20261118170826 20261019170826 55685 example.com.
+					bTrplHCf3Z6w/LICP1rczwdwNxjFQmwHCADw
+					EzgL10XCQDAebOeVFcdiAiBx3iBb0n4ioZ/d
+					oiP4b5jiOLkkPNOyWlaWznFDDylT3mPmDZyE
+					dQl2yQWthSfYl5yMrmxI5m+QiTUtD+RTQiE2
+					XcuzLBB0O6l2Chrj+GdEaCnCcKeFBTSL/gxI
+					vrYw59mZprCpM9M7+O5j6C2qnwYWYvrUqwUm
+					prWTLnhOe+9lGWXnsE/C/nCa2n6Pr4t8dzbt
+					ETtuN/JyO5+KPFSx/B+nThH+NociDr/6ztoi
+					ql6QqC/Waqel1INCN0k7fAOn2+qglv186S5Z
+					uNt3XosoqS6doTj3rQ== )
+; pending-answer
+domain-ns.example.com.	299	\-AAAA	;-$NXRRSET
+; example.com. SOA domain-ns.example.com. admin.example.com. 1 3600 900 604800 300
+; example.com. RRSIG SOA ...
+; domain-ns.example.com. RRSIG NSEC ...
+; domain-ns.example.com. NSEC www.example.com. A RRSIG NSEC
+; glue
+			599	A	172.16.3.30
+; pending-additional
+			600	RRSIG	A 8 3 600 (
+					20261118170826 20261019170826 20739 example.com.
+					bwduOohMMjR/cQ+fjwMKkmHtlOTnhhgyKVaA
+					mnLwy1VkPQtYANsrcnuxdThftJsX+kFwmhhM
+					MwlWRVWDKZhokoQswEX1zmwgyN5/1o3UWawk
+					akZl3AA8Ct7ee2pL3GJTNoij/ZAbs480hKyz
+					QEoez+S6UoV2dLWb3b7kEy3ZWR0= )
+; secure
+www.example.com.	600	A	172.16.1.20
+; secure
+			600	RRSIG	A 8 3 600 (
+					20261118170826 20261019170826 20739 example.com.
+					HKQ9eqjRVdSBQEsLMC5tQOJjwXOVQhNMMWbA
+					raJ03JNKyVhqgfijZzOoSCoqE/DE64D5Sm8e
+					tx6gUG11O+WBAwacNSwLXz1QJXw8Qs3MxXfW
+					XdwoC9M7Ob2UiW9/g6vE7UGyaWV3AWbRdxNv
+					8R0zRoWkPQ9FE3CMfhnYs6GWe9s= )
+; pending-answer
+tld-ns.com.		299	\-AAAA	;-$NXRRSET
+; com. SOA tld-ns.com. admin.com. 1 3600 900 604800 300
+; com. RRSIG SOA ...
+; tld-ns.com. RRSIG NSEC ...
+; tld-ns.com. NSEC com. A RRSIG NSEC
+; glue
+			599	A	172.16.3.20
+;
+; Address database dump
+;
+; [edns success/timeout]
+; [plain success/timeout]
+;
+; domain-ns.example.com. [v4 TTL 59] [v6 TTL 299] [v4 not_found] [v6 nxrrset]
+;	172.16.3.30 [srtt 675] [flags 00000004] [edns 5/0] [plain 0/0] [udpsize 962] [cookie=0b4e1d994e624a17010000006ad65dd3af9b366ec074ffdb] [ttl 59]
+; tld-ns.com. [v4 TTL 59] [v6 TTL 299] [v4 not_found] [v6 nxrrset]
+;	172.16.3.20 [srtt 745] [flags 00000004] [edns 4/0] [plain 0/0] [udpsize 938] [cookie=467357024e29ab4a010000006ad65dd2373b50b25f333731] [ttl 59]
+;
+; Unassociated entries
+;
+;	172.16.3.10 [srtt 990] [flags 00000004] [edns 6/0] [plain 0/0] [udpsize 922] [cookie=46284ce300a0211c010000006ad65dd27946c139768d1489] [ttl 59]
+;
+; SERVFAIL cache
+;
+; example.com/A [ttl 0]
+;
+; Start view _bind
+;
+;
+; Cache dump of view '_bind' (cache _bind)
+;
+; using a 0 second stale ttl
+$DATE 20261019181339
+;
+; Address database dump
+;
+; [edns success/timeout]
+; [plain success/timeout]
+;
+;
+; Unassociated entries
+;
+;
+; SERVFAIL cache
+;
+; Dump complete

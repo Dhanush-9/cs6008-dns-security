@@ -1,0 +1,104 @@
+================================================================================
+ANNOTATED PACKET CAPTURE — Phase 3 DNSSEC Chain of Trust & Forgery Defense
+================================================================================
+Capture file  : attack.pcap
+Captured on   : attacker eth0 (172.16.2.100), link-type EN10MB
+Tool          : tcpdump -i eth0 -w /tmp/attack.pcap udp port 53
+Attacker Mode : --forge (Phase 2 interceptor binary unchanged)
+Target domain : example.com
+Security Env  : DNSSEC enabled with unbroken chain of trust (. -> com -> example.com)
+Resolver Trust: Root KSK trust anchor configured, dnssec-validation yes;
+
+================================================================================
+NETWORK TOPOLOGY & ROLES
+================================================================================
+  [client 172.16.1.10]
+        |
+  [resolver 172.16.2.10]     (Validating DNSSEC Resolver with Root Trust Anchor)
+        |
+  [core-router 172.16.2.3]   (Route diversion: 172.16.2.10/32 -> attacker)
+        |
+  [attacker 172.16.2.100]    (On-path interceptor in --forge mode)
+        |
+  [root-ns 172.16.3.10]      (Authoritative for .; signed with RSASHA256)
+  [tld-ns 172.16.3.20]       (Authoritative for com.; signed with RSASHA256)
+  [domain-ns 172.16.3.30]    (Authoritative for example.com.; signed with RSASHA256)
+
+================================================================================
+FRAME-BY-FRAME PACKET TRACE & CRYPTOGRAPHIC VALIDATION WALKTHROUGH
+================================================================================
+
+1. RESOLUTION INITIATION & ROOT DNSSEC FETCH
+--------------------------------------------
+Timestamp: 23:40:58.259110
+  Packet: 172.16.3.10.53 > 172.16.2.10.46662
+  DNS Referral: root-ns responds with com NS delegation and DS records.
+  Action: Relayed transparently by attacker.
+
+Timestamp: 23:40:58.260645
+  Packet: 172.16.3.10.53 > 172.16.2.10.41074 (Length: 950 bytes)
+  DNS Response: . DNSKEY RRset and covering RRSIGs.
+  Validation: Resolver matches the Root KSK with its configured trust-anchor
+  ("." initial-key 257 3 8 ...). Trust is established at the root level!
+
+2. TLD (.com) DELEGATION & DS RECORD VALIDATION
+-----------------------------------------------
+Timestamp: 23:40:58.260892 & 23:40:58.261848
+  Packet: 172.16.3.20.53 > 172.16.2.10.51840 (Length: 488 bytes)
+  DNS Response: tld-ns provides delegation to example.com along with its DS record:
+    example.com. IN DS 55685 8 2 FAD76A23...
+  Validation: Resolver validates com's DS against root, then com's DNSKEYs,
+  then verifies the DS record for example.com using com's ZSK.
+  Result: Resolver now cryptographically KNOWS that example.com MUST be signed!
+
+3. GENUINE DOMAIN RESPONSE (WITH RRSIG) INTERCEPTED
+---------------------------------------------------
+Timestamp: 23:40:58.261957
+  Packet: 172.16.3.30.53 > 172.16.2.10.41597 (Length: 665 bytes)
+  TXID  : 38973
+  Payload:
+    example.com. IN A 172.16.1.20
+    example.com. IN RRSIG A 8 2 600 ... (Signed by example.com ZSK key 20739)
+  Note: This is the authentic response from domain-ns. It is intercepted by
+  the attacker via the core-router diversion route.
+
+4. ATTACKER INJECTS FORGED RESPONSE (PHASE 2 FORGERY)
+-----------------------------------------------------
+Timestamp: 23:40:58.262190
+  Packet: 172.16.3.30.53 > 172.16.2.10.41597 (Length: 73 bytes)
+  TXID  : 38973 (Spoofed to match query)
+  Source: 172.16.3.30:53 (Spoofed IP & port of domain-ns)
+  Destination: 172.16.2.10:41597 (Resolver's query port)
+  Payload:
+    example.com. 600 IN A 172.16.1.30 (ROGUE IP)
+    *** NO RRSIG INCLUDED ***
+
+5. RESOLVER CRYPTOGRAPHIC REJECTION & OUTCOME
+--------------------------------------------
+- In Phase 2: Resolver accepted the packet at 23:40:58.262190 because TXID and UDP
+  port matched. Cache was poisoned with 172.16.1.30.
+- In Phase 3:
+  1. Resolver already verified from parent (com) that a DS record exists for example.com.
+  2. The incoming answer for `example.com. A` lacks a valid RRSIG.
+  3. Resolver flags the response as BOGUS (DNSSEC validation failure).
+  4. The forged record is completely DISCARDED. It is NOT admitted into cache.
+  5. Resolver sends RCODE = SERVFAIL (Server Failure) back to client!
+  6. Client receives SERVFAIL and curl aborts immediately:
+     "curl: (6) Could not resolve host: example.com (DNS server returned general failure)"
+
+6. UNAFFECTED NON-TARGET LOOKUP (www.example.com)
+-------------------------------------------------
+Timestamp: 23:41:28.627649
+  Packet: 172.16.3.30.53 > 172.16.2.10.37194 (Length: 669 bytes)
+  Payload: www.example.com. A 172.16.1.20 + RRSIG
+  Result: Attacker operates in transparent relay mode for non-target queries.
+  Resolver successfully validates RRSIG against example.com's DNSKEY.
+  Client receives: NOERROR, flags: qr rd ra ad, 172.16.1.20 (Authenticated Data).
+
+================================================================================
+CONCLUSION & COMPARISON
+================================================================================
+Phase 2 (Plain DNS)       : Forgery SUCCEEDS -> Client redirected to rogue webserver.
+Phase 3 (DNSSEC Validated): Forgery FAILS -> Resolver returns SERVFAIL; client safely
+                            aborts and never contacts rogue server.
+================================================================================

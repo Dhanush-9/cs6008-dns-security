@@ -1,0 +1,3 @@
+; fully validated
+example.com.		600	IN	A	172.16.1.20
+example.com.		600	IN	RRSIG	A 8 2 600 20261118170826 20261019170826 20739 example.com. jwVWJ3a6jOjKBJkLRNAl6/fGDQ3NjrZ2+ptX3pD8JobRKtVt7MV+FF2Q MmpQztDBCoIzWwVO6htG0UIZnuiXXi82Ep+2yorqi4OAyLa3veLBfzB1 DlsZ/ET4yH14DAShLhbE1KggO74CSFnGSJr+dudC4JbbCUj7azkLvpeu Zqg=

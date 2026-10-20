@@ -1,0 +1,5 @@
+* Could not resolve host: example.com (DNS server returned general failure)
+* Could not resolve host: example.com
+* Could not resolve: example.com:80
+* closing connection #0
+curl: (6) Could not resolve host: example.com (DNS server returned general failure)
