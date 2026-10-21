@@ -1,0 +1,99 @@
+=== Clean baseline: signed hierarchy, no attacker in the path ===
+[*] DNSSEC tools not found on host; signing inside the lab image...
+=== Phase 4 DNSSEC signing: secure delegation ===
+[*] 1/3 Signing example.com...
+[*] 2/3 Signing com...
+[+] Run A: example.com DS added to com.
+[*] 3/3 Signing root...
+[+] Signing complete. Delegation mode: secure
+ Network phase4_authoritative-net Creating 
+ Network phase4_authoritative-net Creating 
+ Network phase4_client-net Creating 
+ Network phase4_resolver-net Creating 
+ Network phase4_resolver-net Creating 
+ Network phase4_client-net Creating 
+ Network phase4_authoritative-net Created 
+ Network phase4_authoritative-net Created 
+ Container phase4-domain-ns-1 Creating 
+ Container phase4-tld-ns-1 Creating 
+ Container phase4-root-ns-1 Creating 
+ Network phase4_resolver-net Created 
+ Network phase4_resolver-net Created 
+ Container phase4-resolver-1 Creating 
+ Container phase4-core-router-1 Creating 
+ Container phase4-attacker-1 Creating 
+ Network phase4_client-net Created 
+ Network phase4_client-net Created 
+ Container phase4-webserver-1 Creating 
+ Container phase4-edge-router-1 Creating 
+ Container phase4-client-1 Creating 
+ Container phase4-rogue-web-1 Creating 
+ Container phase4-root-ns-1 Created 
+ Container phase4-domain-ns-1 Created 
+ Container phase4-tld-ns-1 Created 
+ Container phase4-core-router-1 Created 
+ Container phase4-resolver-1 Created 
+ Container phase4-attacker-1 Created 
+ Container phase4-webserver-1 Created 
+ Container phase4-client-1 Created 
+ Container phase4-rogue-web-1 Created 
+ Container phase4-edge-router-1 Created 
+ Container phase4-resolver-1 Starting 
+ Container phase4-domain-ns-1 Starting 
+ Container phase4-root-ns-1 Starting 
+ Container phase4-edge-router-1 Starting 
+ Container phase4-rogue-web-1 Starting 
+ Container phase4-client-1 Starting 
+ Container phase4-tld-ns-1 Starting 
+ Container phase4-webserver-1 Starting 
+ Container phase4-core-router-1 Starting 
+ Container phase4-attacker-1 Starting 
+ Container phase4-resolver-1 Started 
+ Container phase4-domain-ns-1 Started 
+ Container phase4-root-ns-1 Started 
+ Container phase4-edge-router-1 Started 
+ Container phase4-rogue-web-1 Started 
+ Container phase4-client-1 Started 
+ Container phase4-tld-ns-1 Started 
+ Container phase4-webserver-1 Started 
+ Container phase4-core-router-1 Started 
+ Container phase4-attacker-1 Started 
+[*] Waiting for the resolver...
+
+Expected: dig returns 172.16.1.20 with the ad flag and RRSIG records.
+
+; <<>> DiG 9.20.29 <<>> +dnssec example.com.
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41520
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: 3b9e08ee8f923dab010000006ad86d887c77ecec111f53e6 (good)
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		600	IN	A	172.16.1.20
+example.com.		600	IN	RRSIG	A 8 2 600 20261120064510 20261021064510 571 example.com. mrwqrZk6kBd4jya8E3nJdKNXn8r7ITWa0apS0/Hi+QxsJN+wwA9NjNNT IgnAzuzPUmMC9KKSrB0aOULDgFNFAmXpcSgr3G0Z7UxcHMEfUpU12RSl THCPBT9SaCDAL693BkQv486/Zit/siUrkpvrk94cm5GNRqP4svr+PBiL 0qI=
+
+;; Query time: 2 msec
+;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
+;; WHEN: Wed Oct 21 07:45:12 UTC 2026
+;; MSG SIZE  rcvd: 255
+
+
+Expected: the genuine web page is returned.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Real Example.com</title>
+</head>
+<body>
+  <h1>Real Example.com</h1>
+  <p>This is the real web server at 172.16.1.20.</p>
+</body>
+</html>
+

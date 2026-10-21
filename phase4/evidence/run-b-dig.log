@@ -1,0 +1,21 @@
+
+; <<>> DiG 9.20.29 <<>> +dnssec example.com.
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 38209
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: c7b47001875193f9010000006ad87a7fda5da422e14eac4c (good)
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		600	IN	A	172.16.1.30
+
+;; Query time: 6 msec
+;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
+;; WHEN: Wed Oct 21 08:40:31 UTC 2026
+;; MSG SIZE  rcvd: 84
+

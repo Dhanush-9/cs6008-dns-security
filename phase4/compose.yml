@@ -1,0 +1,186 @@
+services:
+    client:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            client-net:
+                ipv4_address: 172.16.1.10
+        entrypoint: 
+            - /lab/scripts/client-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/client-entrypoint.sh:/lab/scripts/client-entrypoint.sh:ro
+            - ./client/resolv.conf:/etc/resolv.conf:ro
+            - ./bind/resolver/root.key:/etc/bind/root.key:ro
+
+    webserver:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            client-net:
+                ipv4_address: 172.16.1.20
+        entrypoint: 
+            - /lab/scripts/webserver-entrypoint.sh
+        command: ["busybox-extras", "httpd", "-f", "-p", "80", "-h", "/var/www/html"]
+        volumes:
+            - ./scripts/webserver-entrypoint.sh:/lab/scripts/webserver-entrypoint.sh:ro
+            - ./web/real:/var/www/html:ro
+
+    rogue-web:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            client-net:
+                ipv4_address: 172.16.1.30
+        entrypoint: 
+            - /lab/scripts/webserver-entrypoint.sh
+        command: ["busybox-extras", "httpd", "-f", "-p", "80", "-h", "/var/www/html"]
+        volumes:
+            - ./scripts/webserver-entrypoint.sh:/lab/scripts/webserver-entrypoint.sh:ro
+            - ./web/rogue:/var/www/html:ro
+
+    edge-router:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "1"
+        networks:
+            client-net:
+                ipv4_address: 172.16.1.2
+            resolver-net:
+                ipv4_address: 172.16.2.2
+        entrypoint: 
+            - /lab/scripts/router-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts/router-entrypoint.sh:/lab/scripts/router-entrypoint.sh:ro
+
+    resolver:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            resolver-net:
+                ipv4_address: 172.16.2.10
+        entrypoint:
+            - /lab/scripts/resolver-entrypoint.sh
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
+        volumes:
+            - ./scripts/resolver-entrypoint.sh:/lab/scripts/resolver-entrypoint.sh:ro
+            - ./bind/resolver:/etc/bind:ro
+
+    attacker:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+            - NET_RAW
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            resolver-net:
+                ipv4_address: 172.16.2.100
+        entrypoint:
+            - /lab/scripts/attacker-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts:/lab/scripts:ro
+            - ./attacker:/lab/attacker
+
+    core-router:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "1"
+        networks:
+            resolver-net:
+                ipv4_address: 172.16.2.3
+            authoritative-net:
+                ipv4_address: 172.16.3.3
+        entrypoint:
+            - /lab/scripts/router-entrypoint.sh
+        command: ["tail", "-f", "/dev/null"]
+        volumes:
+            - ./scripts:/lab/scripts:ro
+
+    root-ns:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            authoritative-net:
+                ipv4_address: 172.16.3.10
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/root:/etc/bind:ro
+
+    tld-ns:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            authoritative-net:
+                ipv4_address: 172.16.3.20
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/tld:/etc/bind:ro
+
+    domain-ns:
+        image: cs6008-phase4-lab
+        cap_add:
+            - NET_ADMIN
+        sysctls:
+            net.ipv4.ip_forward: "0"
+        networks:
+            authoritative-net:
+                ipv4_address: 172.16.3.30
+        entrypoint:
+            - /lab/scripts/authoritative-entrypoint.sh
+        command: ["/usr/sbin/named", "-g", "-u", "bind", "-c", "/etc/bind/named.conf"]
+        volumes:
+            - ./scripts/authoritative-entrypoint.sh:/lab/scripts/authoritative-entrypoint.sh:ro
+            - ./bind/domain:/etc/bind:ro
+
+networks:
+    client-net:
+        driver: bridge
+        internal: true
+        ipam:
+            config:
+                - subnet: 172.16.1.0/24
+
+    resolver-net:
+        driver: bridge
+        internal: true
+        ipam:
+            config:
+                - subnet: 172.16.2.0/24
+
+    authoritative-net:
+        driver: bridge
+        internal: true
+        ipam:
+            config:
+                - subnet: 172.16.3.0/24
