@@ -1,8 +1,23 @@
 teachings/
 references.txt
+
+# Compiled files
 interceptor
 *.o
-phase2/attacker/interceptor
-phase2/attacker/interceptor.log
-phase3/attacker/interceptor
-phase3/attacker/interceptor.log
+phase*/attacker/interceptor
+phase*/attacker/interceptor.log
+
+# Files created by the DNSSEC signing script
+K*.key
+K*.private
+dsset-*
+*.signed
+*.jnl
+
+# Other Phase 3 files created by sign-zones.sh
+phase3/bind/domain/db.example.com
+phase3/bind/tld/db.com
+phase3/bind/root/db.root
+phase3/bind/resolver/root.key
+phase3/bind/resolver/root.ds
+phase3/bind/resolver/trust-anchors.conf
