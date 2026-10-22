@@ -1,0 +1,7 @@
+=== Phase 6 last-mile interceptor ===
+Mode: FORGE
+Path: resolver 172.16.2.10 -> client 172.16.1.10
+[+] Ready on eth0; filter: udp and src host 172.16.2.10 and src port 53 and dst host 172.16.1.10
+[+] Forged last-mile reply: example.com -> 172.16.1.30, AD=1, TXID=0xfb9
+[+] Forged last-mile reply: example.com -> 172.16.1.30, AD=1, TXID=0x88b5
+[+] Forged last-mile reply: example.com -> 172.16.1.30, AD=1, TXID=0x6f71
