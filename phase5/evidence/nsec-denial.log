@@ -1,0 +1,26 @@
+
+; <<>> DiG 9.20.30 <<>> +dnssec missing.example.com.
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 42680
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 6, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 1232
+; COOKIE: bdf85c2dd36c856e010000006ad9d06979984e6da591b8e7 (good)
+;; QUESTION SECTION:
+;missing.example.com.		IN	A
+
+;; AUTHORITY SECTION:
+mail.example.com.	300	IN	RRSIG	NSEC 8 3 300 20261121075911 20261022075911 55393 example.com. AXtmZkZnj9S4Xs+aMC1GGz0snWPOOMC6VfL4/p4ezyj5Q02HQwSxzki4 /wwlZmWsQS+zvDxS15zVkTPiMpWb+gEwyMFGUFo6GcOsItiu63ZVIu+z vRr8m6kwJsdD1XZG5k8Ype0AEsdmDOzYK4n+BCtlp25AeDzQynIH36y2 ofg=
+mail.example.com.	300	IN	NSEC	vpn.example.com. A RRSIG NSEC
+example.com.		300	IN	SOA	domain-ns.example.com. admin.example.com. 1 3600 900 604800 300
+example.com.		300	IN	RRSIG	SOA 8 2 600 20261121075911 20261022075911 55393 example.com. Si+PvCEGIFKgltny2i+VJchydyLCnmhzpqjQVGEbuhbRLTILKf08Cqfp aOsbYKg+7UpOHGif4GuYd9SIgn6MEl5ga7QTgeZ1TWSY/3l5InVGOpkr 6N02yzzSpPmNaSj/siw1KcCtIrVJ21D9AIdkjUn28rnRy/PL0iUHh6f4 JpE=
+example.com.		300	IN	RRSIG	NSEC 8 2 300 20261121075911 20261022075911 55393 example.com. uFQ9w9yEuvCAITha5HCYgbSQLwjrYgiiU4wXRxO2S9UGqw396+HJ3dEW jBTykgOh5JSB5wTJkxzHVsRs/nsptle9ODO17sb6Yn65vlKluVY/+kXD ioRLL5SjxaNYzsCgbIdRNuQ22TN9wff4N6w416NFKO8FuKfoeVy2JVji OQQ=
+example.com.		300	IN	NSEC	admin.example.com. A NS SOA RRSIG NSEC DNSKEY
+
+;; Query time: 5 msec
+;; SERVER: 172.16.2.10#53(172.16.2.10) (UDP)
+;; WHEN: Thu Oct 22 08:59:21 UTC 2026
+;; MSG SIZE  rcvd: 723
+

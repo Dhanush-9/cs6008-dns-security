@@ -1,0 +1,36 @@
+g++ -O2 -Wall -Wextra -std=c++17 -o zone-walker zone_walker.cpp -lpcap
+=== Phase 5 libpcap zone walker ===
+Known starting name: example.com.
+Authoritative server: 172.16.3.30
+Method: follow NSEC next-name links; no AXFR or wordlist
+[1] Query NSEC for example.com.
+    Next existing name: admin.example.com.
+[2] Query NSEC for admin.example.com.
+    Next existing name: api.example.com.
+[3] Query NSEC for api.example.com.
+    Next existing name: dev.example.com.
+[4] Query NSEC for dev.example.com.
+    Next existing name: domain-ns.example.com.
+[5] Query NSEC for domain-ns.example.com.
+    Next existing name: mail.example.com.
+[6] Query NSEC for mail.example.com.
+    Next existing name: vpn.example.com.
+[7] Query NSEC for vpn.example.com.
+    Next existing name: www.example.com.
+[8] Query NSEC for www.example.com.
+    Next existing name: example.com.
+
+Walk complete.
+Recovered names: 7
+  admin.example.com.
+  api.example.com.
+  dev.example.com.
+  domain-ns.example.com.
+  mail.example.com.
+  vpn.example.com.
+  www.example.com.
+Known apex: example.com.
+Complete owner-name count: 8
+Queries sent: 8
+Assignment limit: 10
+Query limit: PASS

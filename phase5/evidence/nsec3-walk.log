@@ -1,0 +1,10 @@
+make: Nothing to be done for 'all'.
+=== Phase 5 libpcap zone walker ===
+Known starting name: example.com.
+Authoritative server: 172.16.3.30
+Method: follow NSEC next-name links; no AXFR or wordlist
+[1] Query NSEC for example.com.
+    Received NSEC3: the next owner is hashed, not a plaintext name.
+Walk blocked.
+Queries sent: 1
+Recovered names: 0
