@@ -1,0 +1,14 @@
+[client-opportunistic] Attempting DoT to resolver.cs6008.local:853 ...
+[client-opportunistic] Transport denial detected – falling back to cleartext UDP 53
+;; ->>HEADER<<- opcode: QUERY; status: NOERROR; id: 56811
+;; Flags: qr rd ra ad; QUERY: 1; ANSWER: 1; AUTHORITY: 0; ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;; example.com.        		IN	A
+
+;; ANSWER SECTION:
+example.com.        	600	IN	A	172.16.1.30
+
+;; Received 45 B
+;; Time 2026-10-23 16:15:38 UTC
+;; From 172.16.2.10@53(UDP) in 1.6 ms

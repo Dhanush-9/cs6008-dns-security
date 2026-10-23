@@ -1,0 +1,3 @@
+;; WARNING: TLS, failed to receive reply (Decryption has failed.)
+;; WARNING: can't receive reply from 172.16.2.10@853(TLS)
+;; ERROR: failed to query server resolver.cs6008.local@853(TCP)

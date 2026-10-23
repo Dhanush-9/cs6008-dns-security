@@ -1,0 +1,17 @@
+[client-opportunistic] Attempting DoT to resolver.cs6008.local:853 ...
+;; TLS session (TLS1.3)-(ECDHE-X25519)-(RSA-PSS-RSAE-SHA256)-(AES-256-GCM)
+;; ->>HEADER<<- opcode: QUERY; status: NOERROR; id: 58767
+;; Flags: qr rd ra ad; QUERY: 1; ANSWER: 1; AUTHORITY: 0; ADDITIONAL: 1
+
+;; EDNS PSEUDOSECTION:
+;; Version: 0; flags: ; UDP size: 1232 B; ext-rcode: NOERROR
+
+;; QUESTION SECTION:
+;; example.com.        		IN	A
+
+;; ANSWER SECTION:
+example.com.        	576	IN	A	172.16.1.20
+
+;; Received 56 B
+;; Time 2026-10-23 16:01:23 UTC
+;; From 172.16.2.10@853(TLS) in 3.8 ms

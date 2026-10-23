@@ -1,0 +1,26 @@
+$TTL 600
+
+@   IN  SOA root-ns. admin.root-ns. (
+        1          ; serial
+        3600       ; refresh
+        900        ; retry
+        604800     ; expire
+        300        ; negative cache TTL
+)
+
+@               IN  NS  root-ns.
+root-ns.        IN  A   172.16.3.10
+
+com.            IN  NS  tld-ns.com.
+tld-ns.com.     IN  A   172.16.3.20
+com.			IN DS 39362 8 2 CA7F6AD11332337B53D3FB30B33D67EB49D94C83595AE5E39AE99E8E EC088611
+; This is a key-signing key, keyid 27530, for .
+; Created: 20261023154904 (Fri Oct 23 15:49:04 2026)
+; Publish: 20261023154904 (Fri Oct 23 15:49:04 2026)
+; Activate: 20261023154904 (Fri Oct 23 15:49:04 2026)
+. IN DNSKEY 257 3 8 AwEAAbEqLUdDqH7QNJ4bw+M1gAVj3SWLhdzUbkfa0kyFCS+ZhxKDCEtU 3zVwdmetN+p4H/UCStqd8tfpGIzNUAudHTeHo4FltbGcegqpsNy1XWnG UYu5YndD/sn+G65Hdo7b868yzzIzkEMFm0cN7AEewPUbMsx/J8G+1c6C lYAFWlYaoY2TXckrlF+M+D05vlZ4UcBWoEF5aMy5F2LzGZ6qCOODlkMC 2JPokT3obwneb+NY1rKGhzml/9kWMF1PaJKzXH0OnUkeJWiQEVvobU2S Ax9m7pIFD8dutiJIBt6bv5kcpvMO9Vz957VVUiBf6ZbisC74J6XNxfFx 5fR1H/wQxTc=
+; This is a zone-signing key, keyid 18214, for .
+; Created: 20261023154904 (Fri Oct 23 15:49:04 2026)
+; Publish: 20261023154904 (Fri Oct 23 15:49:04 2026)
+; Activate: 20261023154904 (Fri Oct 23 15:49:04 2026)
+. IN DNSKEY 256 3 8 AwEAAcj9RwpPWSDH38VWxQ3oaOhP4kK9DydXP94B8Gr8v3MzlFJSRF6n SSbMcjekTJlIvvAt90KbD/lQz9I0/3uzZQo1tWQBS/c7JHExiI1Ot77q bVDZX8LrZyCf2ELaNMZA6u8/ebWb1M4ApRZY3DhxWqJXNEACL/T76VBo 6xQZmeSt

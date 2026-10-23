@@ -22,3 +22,5 @@ dsset-*
 /phase[3-6]/bind/resolver/root.key
 /phase[3-6]/bind/resolver/root.ds
 /phase[3-6]/bind/resolver/trust-anchors.conf
+
+CS6008_AS2_DNS_Security.pdf

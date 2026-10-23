@@ -1,0 +1,13 @@
+=== Phase 7 last-mile interceptor ===
+Mode  : TAMPER-TLS (TCP 853)
+Path  : resolver 172.16.2.10 -> client 172.16.1.10
+Tamper: corrupting TLS record body after 3 type-0x17 records per connection.
+[+] Ready on eth0; filter: tcp and src host 172.16.2.10 and src port 853 and dst host 172.16.1.10
+[-] TCP relay injection failed: send: No buffer space available
+[!] Tampered: flipped byte in TLS record at payload+9 (record body len=266)
+[-] TCP relay injection failed: send: No buffer space available
+[!] Tampered: flipped byte in TLS record at payload+9 (record body len=266)
+[-] TCP relay injection failed: send: No buffer space available
+[!] Tampered: flipped byte in TLS record at payload+9 (record body len=266)
+[-] TCP relay injection failed: send: No buffer space available
+[!] Tampered: flipped byte in TLS record at payload+9 (record body len=266)

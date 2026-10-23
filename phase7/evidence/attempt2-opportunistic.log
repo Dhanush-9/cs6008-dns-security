@@ -1,0 +1,4 @@
+[client-opportunistic] Attempting DoT to resolver.cs6008.local:853 ...
+[client-opportunistic] TLS-layer error (no fallback):
+;; WARNING: TLS, handshake failed (Error in the certificate.)
+;; ERROR: failed to query server resolver.cs6008.local@853(TCP)
